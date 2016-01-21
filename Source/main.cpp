@@ -2,7 +2,7 @@
 // Using SDL2 to create an application window
 
 #if defined(_WIN32) || (_WIN64)
-	#include "SDL2/SDL.h"
+	#include "SDL.h"
 #endif
 
 #if defined(__APPLE__)
@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
 
 #if defined(_WIN32) || (_WIN64)
 	cout << "Running on Windows" << endl;
+	cout << "Added on Windows" << endl;
 #endif
 
 #if defined(__linux__)
