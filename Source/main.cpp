@@ -173,33 +173,232 @@ int main(int argc, char* argv[]) {
     titlePos.h = 500;
     // title - end
 
-    // 1 player - start
+    //////////////////////////1 player - start
     string Player1path = s_cwd_images + "/One_Player_Game.png";
 
-    // create a SDL surface to hold the background image
+    // create a SDL surface to hold the player 1 image
     surface = IMG_Load(Player1path.c_str());
 
     //create a SDL texture
-    SDL_Texture *player1N;
+    SDL_Texture *Player1N;
 
     // place surface into the texture
-    player1N = SDL_CreateTextureFromSurface(renderer, surface);
+    Player1N = SDL_CreateTextureFromSurface(renderer, surface);
 
     SDL_FreeSurface(surface);
+
+	string Player1Opath = s_cwd_images + "/One_Player_Game_o.png";
+
+	// create a SDL surface to hold the player 1 image
+	surface = IMG_Load(Player1Opath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *Player1O;
+
+	// place surface into the texture
+	Player1O = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
 
     // create SDL Rectangle for the title graphic
     SDL_Rect Player1NPos;
 
     //create the SDL_Rectangle for the texture's position and size - title
-    Player1NPos.x = 50;
-    Player1NPos.y = 50;
-    Player1NPos.w = 512;
-    Player1NPos.h = 67;
-    // 1 player - end
+    Player1NPos.x = 380;
+    Player1NPos.y = 261;
+    Player1NPos.w = 311;
+    Player1NPos.h = 42;
+    ////////////////////////////////// 1 player - end
+
+
+	//////////////////////////2 player - start
+	string Player2path = s_cwd_images + "/Two_Player_Game.png";
+
+	// create a SDL surface to hold the player 2 image
+	surface = IMG_Load(Player2path.c_str());
+
+	//create a SDL texture
+	SDL_Texture *Player2N;
+
+	// place surface into the texture
+	Player2N = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	string Player2Opath = s_cwd_images + "/Two_Player_Game_o.png";
+
+	// create a SDL surface to hold the player 2 image
+	surface = IMG_Load(Player2Opath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *Player2O;
+
+	// place surface into the texture
+	Player2O = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// create SDL Rectangle for the player 2 graphic
+	SDL_Rect Player2NPos;
+
+	//create the SDL_Rectangle for the texture's position and size - title
+	Player2NPos.x = 360;
+	Player2NPos.y = 343;
+	Player2NPos.w = 352;
+	Player2NPos.h = 42;
+	////////////////////////////////// player - end
+
+
+	//////////////////////////instructions - start
+	string Instructionspath = s_cwd_images + "/Instructions.png";
+
+	// create a SDL surface to hold the instructions image
+	surface = IMG_Load(Instructionspath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *InstructionsN;
+
+	// place surface into the texture
+	InstructionsN = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	string InstructionsOpath = s_cwd_images + "/Instructions_o.png";
+
+	// create a SDL surface to hold the instructions image
+	surface = IMG_Load(InstructionsOpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *InstructionsO;
+
+	// place surface into the texture
+	InstructionsO = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// create SDL Rectangle for the player 2 graphic
+	SDL_Rect InstructionsNPos;
+
+	//create the SDL_Rectangle for the texture's position and size - title
+	InstructionsNPos.x = 351;
+	InstructionsNPos.y = 424;
+	InstructionsNPos.w = 374;
+	InstructionsNPos.h = 42;
+	////////////////////////////////// instructions - end
+
+
+	//////////////////////////quit - start
+	string Quitpath = s_cwd_images + "/Quit_Game.png";
+
+	// create a SDL surface to hold the instructions image
+	surface = IMG_Load(Quitpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *QuitN;
+
+	// place surface into the texture
+	QuitN = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	string QuitOpath = s_cwd_images + "/Quit_Game_o.png";
+
+	// create a SDL surface to hold the instructions image
+	surface = IMG_Load(QuitOpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *QuitO;
+
+	// place surface into the texture
+	QuitO = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// create SDL Rectangle for the player 2 graphic
+	SDL_Rect QuitNPos;
+
+	//create the SDL_Rectangle for the texture's position and size - title
+	QuitNPos.x = 391;
+	QuitNPos.y = 503;
+	QuitNPos.w = 288;
+	QuitNPos.h = 42;
+	////////////////////////////////// quit - end
 
     //***** Create Main Menu - End *****
 
-    //**********Create CURSOR**********
+
+	//***** Create Instructions Menu - Start *****
+
+	// Instructions Graphic - start
+	string InstructionsTextpath = s_cwd_images + "/Instructions_text.png";
+
+	// create a SDL surface to hold the background image
+	surface = IMG_Load(InstructionsTextpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *InstructionsText;
+
+	// place surface into the texture
+	InstructionsText = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// create SDL Rectangle for the title graphic
+	SDL_Rect InstructionsTextPos;
+
+	//create the SDL_Rectangle for the texture's position and size - title
+	InstructionsTextPos.x = 120;
+	InstructionsTextPos.y = 271;
+	InstructionsTextPos.w = 781;
+	InstructionsTextPos.h = 258;
+
+	//Instructions Graphic - end
+
+
+	// small return button - start
+	string RmenuNpath = s_cwd_images + "/Return_to_Main_Menu.png";
+
+	// create a SDL surface to hold the background image
+	surface = IMG_Load(RmenuNpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *RmenuN;
+
+	// place surface into the texture
+	RmenuN = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// small return button - start
+	string RmenuOpath = s_cwd_images + "/Return_to_Main_Menu_o.png";
+
+	// create a SDL surface to hold the background image
+	surface = IMG_Load(RmenuOpath.c_str());
+
+	//create a SDL texture
+	SDL_Texture *RmenuO;
+
+	// place surface into the texture
+	RmenuO = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	// create SDL Rectangle for the title graphic
+	SDL_Rect RmenuNPos;
+
+	//create the SDL_Rectangle for the texture's position and size - title
+	RmenuNPos.x = 22;
+	RmenuNPos.y = 702;
+	RmenuNPos.w = 145;
+	RmenuNPos.h = 41;
+
+	//small return button - end
+
+	//***** Create Instructions Menu - end *****
+
+
+
+    //**********Create CURSOR - start**********
     // create cursor
     string CURSORpath = s_cwd_images + "/cursor.png";
 
@@ -213,13 +412,24 @@ int main(int argc, char* argv[]) {
     cursor = SDL_CreateTextureFromSurface(renderer, surface);
 
     //create the SDL_Rectangle for the texture's position and size = -x,y,w,h
-    SDL_Rect cursorPos;
+    SDL_Rect cursorPos, activePos;
 
     //set the X, Y, W, and H for the Rectangle
     cursorPos.x = 0;
     cursorPos.y = 0;
     cursorPos.w = 59;
     cursorPos.h = 44;
+
+	//set the X, Y, W, and H for the Rectangle
+	activePos.x = 10;
+	activePos.y = 10;
+	activePos.w = 10;
+	activePos.h = 10;
+
+	//var from cursor speed
+	int cursorSpeed = 400;
+
+	//**********Create CURSOR - end**********
 
 /*
 	//The surface contained by the window
@@ -340,6 +550,18 @@ int main(int argc, char* argv[]) {
 				//Draw the title image
 				SDL_RenderCopy(renderer, title, NULL, &titlePos);
 
+				//Draw the player 1 button
+				SDL_RenderCopy(renderer, Player1N, NULL, &Player1NPos);
+
+				//Draw the player 2 button
+				SDL_RenderCopy(renderer, Player2N, NULL, &Player2NPos);
+
+				//Draw the instructions button
+				SDL_RenderCopy(renderer, InstructionsN, NULL, &InstructionsNPos);
+
+				//Draw the quit button
+				SDL_RenderCopy(renderer, QuitN, NULL, &QuitNPos);
+
 				//Draw the cursor image
 				SDL_RenderCopy(renderer, cursor, NULL, &cursorPos);
 
@@ -356,6 +578,11 @@ int main(int argc, char* argv[]) {
 
 			while(instructions)
 			{
+				// set up frame rate for the sections, or case
+				thisTime = SDL_GetTicks();
+				deltaTime = (float)(thisTime - lastTime) / 1000;
+				lastTime = thisTime;
+
 				//check for input events
 				if(SDL_PollEvent(&event))
 				{
@@ -383,6 +610,33 @@ int main(int argc, char* argv[]) {
 					break;
 					}
 				}
+
+				//Update
+				UpdateBackground();
+
+				SDL_RenderClear(renderer);
+
+				//Draw the bkgd image
+				SDL_RenderCopy(renderer, bkgd1, NULL, &bkgd1Pos);
+
+				//Draw the bkgd2 image
+				SDL_RenderCopy(renderer, bkgd2, NULL, &bkgd2Pos);
+
+				//Draw the title image
+				SDL_RenderCopy(renderer, title, NULL, &titlePos);
+
+				//Draw the instruction graphic
+				SDL_RenderCopy(renderer, InstructionsText, NULL, &InstructionsTextPos);
+
+				//Draw the Return to menu image
+				SDL_RenderCopy(renderer, RmenuN, NULL, &RmenuNPos);
+
+				//Draw the cursor image
+				SDL_RenderCopy(renderer, cursor, NULL, &cursorPos);
+
+				//SDL Render present
+				SDL_RenderPresent(renderer);
+
 			}
 			break; // end instructions case
 
