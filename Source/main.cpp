@@ -187,12 +187,12 @@ int main(int argc, char* argv[]) {
 
     // create a SDL surface to hold the player 1 image
     surface = IMG_Load((s_cwd_images + "/One_Player_Game.png").c_str());
-=======
+
     string Player1path = s_cwd_images + "/One_Player_Game.png";
 
     // create a SDL surface to hold the player 1 image
     surface = IMG_Load(Player1path.c_str());
->>>>>>> origin/master
+
 
     //create a SDL texture
     SDL_Texture *Player1N;
@@ -202,15 +202,15 @@ int main(int argc, char* argv[]) {
 
     SDL_FreeSurface(surface);
 
-<<<<<<< HEAD
+
 	// create a SDL surface to hold the player 1 image
 	surface = IMG_Load((s_cwd_images + "/One_Player_Game_o.png").c_str());
-=======
+
 	string Player1Opath = s_cwd_images + "/One_Player_Game_o.png";
 
 	// create a SDL surface to hold the player 1 image
 	surface = IMG_Load(Player1Opath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *Player1O;
@@ -232,16 +232,16 @@ int main(int argc, char* argv[]) {
 
 
 	//////////////////////////2 player - start
-<<<<<<< HEAD
+
 
 	// create a SDL surface to hold the player 2 image
 	surface = IMG_Load((s_cwd_images + "/Two_Player_Game.png").c_str());
-=======
+
 	string Player2path = s_cwd_images + "/Two_Player_Game.png";
 
 	// create a SDL surface to hold the player 2 image
 	surface = IMG_Load(Player2path.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *Player2N;
@@ -251,15 +251,15 @@ int main(int argc, char* argv[]) {
 
 	SDL_FreeSurface(surface);
 
-<<<<<<< HEAD
+
 	// create a SDL surface to hold the player 2 image
 	surface = IMG_Load((s_cwd_images + "/Two_Player_Game_o.png").c_str());
-=======
+
 	string Player2Opath = s_cwd_images + "/Two_Player_Game_o.png";
 
 	// create a SDL surface to hold the player 2 image
 	surface = IMG_Load(Player2Opath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *Player2O;
@@ -281,16 +281,16 @@ int main(int argc, char* argv[]) {
 
 
 	//////////////////////////instructions - start
-<<<<<<< HEAD
+
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load((s_cwd_images + "/Instructions.png").c_str());
-=======
+
 	string Instructionspath = s_cwd_images + "/Instructions.png";
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load(Instructionspath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *InstructionsN;
@@ -300,15 +300,15 @@ int main(int argc, char* argv[]) {
 
 	SDL_FreeSurface(surface);
 
-<<<<<<< HEAD
+
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load((s_cwd_images + "/Instructions_o.png").c_str());
-=======
+
 	string InstructionsOpath = s_cwd_images + "/Instructions_o.png";
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load(InstructionsOpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *InstructionsO;
@@ -330,16 +330,16 @@ int main(int argc, char* argv[]) {
 
 
 	//////////////////////////quit - start
-<<<<<<< HEAD
+
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load((s_cwd_images + "/Quit_Game.png").c_str());
-=======
+
 	string Quitpath = s_cwd_images + "/Quit_Game.png";
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load(Quitpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *QuitN;
@@ -349,15 +349,15 @@ int main(int argc, char* argv[]) {
 
 	SDL_FreeSurface(surface);
 
-<<<<<<< HEAD
+
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load((s_cwd_images + "/Quit_Game_o.png").c_str());
-=======
+
 	string QuitOpath = s_cwd_images + "/Quit_Game_o.png";
 
 	// create a SDL surface to hold the instructions image
 	surface = IMG_Load(QuitOpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *QuitO;
@@ -382,16 +382,16 @@ int main(int argc, char* argv[]) {
 
 	//***** Create Instructions Menu - Start *****
 
-<<<<<<< HEAD
+
 	// create a SDL surface to hold the background image
 	surface = IMG_Load((s_cwd_images + "/Instructions_text.png").c_str());
-=======
+
 	// Instructions Graphic - start
 	string InstructionsTextpath = s_cwd_images + "/Instructions_text.png";
 
 	// create a SDL surface to hold the background image
 	surface = IMG_Load(InstructionsTextpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *InstructionsText;
@@ -414,16 +414,16 @@ int main(int argc, char* argv[]) {
 
 
 	// small return button - start
-<<<<<<< HEAD
+
 
 	// create a SDL surface to hold the background image
 	surface = IMG_Load((s_cwd_images + "/Return_to_Main_Menu.png").c_str());
-=======
+
 	string RmenuNpath = s_cwd_images + "/Return_to_Main_Menu.png";
 
 	// create a SDL surface to hold the background image
 	surface = IMG_Load(RmenuNpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *RmenuN;
@@ -434,16 +434,16 @@ int main(int argc, char* argv[]) {
 	SDL_FreeSurface(surface);
 
 	// small return button - start
-<<<<<<< HEAD
+
 
 	// create a SDL surface to hold the background image
 	surface = IMG_Load((s_cwd_images + "/Return_to_Main_Menu_o.png").c_str());
-=======
+
 	string RmenuOpath = s_cwd_images + "/Return_to_Main_Menu_o.png";
 
 	// create a SDL surface to hold the background image
 	surface = IMG_Load(RmenuOpath.c_str());
->>>>>>> origin/master
+
 
 	//create a SDL texture
 	SDL_Texture *RmenuO;
@@ -467,7 +467,7 @@ int main(int argc, char* argv[]) {
 	//***** Create Instructions Menu - end *****
 
 
-<<<<<<< HEAD
+
 	//***** Create Win Menu - Start *****
 
 	// create a SDL surface to hold the background image
@@ -559,8 +559,7 @@ int main(int argc, char* argv[]) {
 	//***** Create Lose Menu - end *****
 
 
-=======
->>>>>>> origin/master
+
 
     //**********Create CURSOR - start**********
     // create cursor
