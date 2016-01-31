@@ -2,17 +2,29 @@
 // Using SDL2 to create an application window
 
 #if defined(_WIN32) || (_WIN64)
-	#include "SDL.h"
+
+#include "SDL.h"
+#include "SDL_image.h"
+
 #endif
 
 #if defined(__APPLE__)
-	#include "SDL2/SDL.h"
-	#include "SDL2_image/SDL_image.h"
+
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
+
 #endif
 
 #if defined(__linux__)
-	#include "SDL2/SDL.h"
-	#include "SDL2/SDL_image.h"
+
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+
+#endif
+
+#if defined(_WIN32) || (_WIN64)
+#include <direct.h>
+#define getcw _getcw
 #endif
 
 #if defined(__linux__)
@@ -69,6 +81,11 @@ int main(int argc, char* argv[]) {
 #if defined(_WIN32) || (_WIN64)
 	cout << "Running on Windows" << endl;
 	cout << "Added on Windows" << endl;
+
+	string s_cwd(getcwd(NULL, 0));
+
+	string s_cwd_images = s_cwd + "\\Resources\\Images";
+
 #endif
 
 #if defined(__linux__)
@@ -79,7 +96,7 @@ int main(int argc, char* argv[]) {
 	string s_cwd(getcwd(NULL,0));
 
 	//create a string linking to the mac's images folder
-	string s_cwd_images = s_cwd + "/Resources/Images";
+	string s_cwd_images = s_cwd + "/Resources/Images/";
 
 #endif
 
@@ -89,7 +106,7 @@ int main(int argc, char* argv[]) {
 	string s_cwd(getcwd(NULL,0));
 
 	//create a string linking to the mac's images folder
-	string s_cwd_images = s_cwd + "/Resources/Images";
+	string s_cwd_images = s_cwd + "/Resources/Images/";
 
 	//test
 	cout << s_cwd_images << endl;
@@ -224,10 +241,10 @@ int main(int argc, char* argv[]) {
     SDL_Rect Player1NPos;
 
     //create the SDL_Rectangle for the texture's position and size - title
-    Player1NPos.x = 380;
-    Player1NPos.y = 261;
-    Player1NPos.w = 311;
-    Player1NPos.h = 42;
+    Player1NPos.x = 275;
+    Player1NPos.y = 0;
+    Player1NPos.w = 500;
+    Player1NPos.h = 500;
     ////////////////////////////////// 1 player - end
 
 
@@ -273,10 +290,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect Player2NPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	Player2NPos.x = 360;
-	Player2NPos.y = 343;
-	Player2NPos.w = 352;
-	Player2NPos.h = 42;
+	Player2NPos.x = 265;
+	Player2NPos.y = 100;
+	Player2NPos.w = 500;
+	Player2NPos.h = 500;
 	////////////////////////////////// player - end
 
 
@@ -322,10 +339,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect InstructionsNPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	InstructionsNPos.x = 351;
-	InstructionsNPos.y = 424;
-	InstructionsNPos.w = 374;
-	InstructionsNPos.h = 42;
+	InstructionsNPos.x = 275;
+	InstructionsNPos.y = 200;
+	InstructionsNPos.w = 500;
+	InstructionsNPos.h = 500;
 	////////////////////////////////// instructions - end
 
 
@@ -371,10 +388,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect QuitNPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	QuitNPos.x = 391;
-	QuitNPos.y = 503;
-	QuitNPos.w = 288;
-	QuitNPos.h = 42;
+	QuitNPos.x = 325;
+	QuitNPos.y = 250;
+	QuitNPos.w = 500;
+	QuitNPos.h = 500;
 	////////////////////////////////// quit - end
 
     //***** Create Main Menu - End *****
@@ -405,10 +422,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect InstructionsTextPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	InstructionsTextPos.x = 120;
-	InstructionsTextPos.y = 271;
-	InstructionsTextPos.w = 781;
-	InstructionsTextPos.h = 258;
+	InstructionsTextPos.x = 275;
+	InstructionsTextPos.y = 150;
+	InstructionsTextPos.w = 500;
+	InstructionsTextPos.h = 500;
 
 	//Instructions Graphic - end
 
@@ -457,10 +474,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect RmenuNPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	RmenuNPos.x = 22;
-	RmenuNPos.y = 702;
-	RmenuNPos.w = 145;
-	RmenuNPos.h = 41;
+	RmenuNPos.x = 50;
+	RmenuNPos.y = 550;
+	RmenuNPos.w = 300;
+	RmenuNPos.h = 300;
 
 	//small return button - end
 
@@ -485,10 +502,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect WinTextPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	WinTextPos.x = 240;
-	WinTextPos.y = 288;
-	WinTextPos.w = 596;
-	WinTextPos.h = 114;
+	WinTextPos.x = 275;
+	WinTextPos.y = 100;
+	WinTextPos.w = 500;
+	WinTextPos.h = 500;
 
 	//Win Graphic - end
 
@@ -523,10 +540,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect PlayAgainNPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	PlayAgainNPos.x = 875;
-	PlayAgainNPos.y = 702;
-	PlayAgainNPos.w = 125;
-	PlayAgainNPos.h = 40;
+	PlayAgainNPos.x = 750;
+	PlayAgainNPos.y = 550;
+	PlayAgainNPos.w = 300;
+	PlayAgainNPos.h = 300;
 
 	//small return button - end
 
@@ -549,10 +566,10 @@ int main(int argc, char* argv[]) {
 	SDL_Rect LoseTextPos;
 
 	//create the SDL_Rectangle for the texture's position and size - title
-	LoseTextPos.x = 240;
-	LoseTextPos.y = 288;
-	LoseTextPos.w = 596;
-	LoseTextPos.h = 114;
+	LoseTextPos.x = 275;
+	LoseTextPos.y = 100;
+	LoseTextPos.w = 500;
+	LoseTextPos.h = 500;
 
 	//Lose Graphic - end
 
