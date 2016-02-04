@@ -222,6 +222,7 @@ int main(int argc, char* argv[]) {
 
     //****************************************Create Players - START ***********
     Player player1 = Player(renderer, 0, s_cwd_images.c_str(), 250.0, 500.0);
+    Player player2 = Player(renderer, 1, s_cwd_images.c_str(), 750.0, 500.0);
 
     //***** Create Background *****
     string BKGDpath = s_cwd_images + "/placeholder 2.png";
@@ -706,14 +707,22 @@ int main(int argc, char* argv[]) {
 	SDL_UpdateWindowSurface( window );
 */
 
-	//*****set up a Game Controller variable *****
-	SDL_GameController* gGameController = NULL;
-
-	//****Open Game Controller *****
-	gGameController = SDL_GameControllerOpen(0);
-
 	//***** Turn on Game Controller Events
 	SDL_GameControllerEventState(SDL_ENABLE);
+
+	//*****set up a Game Controller variable - 1 *****
+	SDL_GameController* gGameController0 = NULL;
+
+	//****Open Game Controller - 1 *****
+	gGameController0 = SDL_GameControllerOpen(0);
+
+	//*****set up a Game Controller - 2 variable *****
+	SDL_GameController* gGameController1 = NULL;
+
+	//****Open Game Controller - 2 *****
+	gGameController1 = SDL_GameControllerOpen(1);
+
+
 
 	//***** SDL Event to handle input
 	SDL_Event event;
@@ -978,7 +987,7 @@ int main(int argc, char* argv[]) {
 					switch(event.type)
 					{
 						case SDL_CONTROLLERBUTTONDOWN:
-							if(event.cdevice.which == 0)
+							if(event.cdevice.which == 0  || event.cdevice.which == 1)
 							{
 								if(event.cbutton.button == SDL_CONTROLLER_BUTTON_X)
 								{
@@ -1054,24 +1063,41 @@ int main(int argc, char* argv[]) {
 
 						if(event.cdevice.which == 0)
 						{
-							if(event.cbutton.button == SDL_CONTROLLER_BUTTON_A)
+							if(event.cbutton.button == SDL_CONTROLLER_BUTTON_X)
 							{
 								players2 = false;
 								gameState = WIN;
 							}
 
-							if(event.cbutton.button == SDL_CONTROLLER_BUTTON_B)
+							if(event.cbutton.button == SDL_CONTROLLER_BUTTON_Y)
 							{
 								players2 = false;
 								gameState = LOSE;
 							}
 						}
+						player1.OnControllerButton(event.cbutton);
+
+						player2.OnControllerButton(event.cbutton);
+
 						break;
+
+						case SDL_CONTROLLERAXISMOTION:
+
+							player1.OnControllerAxis(event.caxis);
+
+							player2.OnControllerAxis(event.caxis);
+							break;
 					}
 				}
 
 				//Update
 				UpdateBackground(deltaTime);
+
+				//update player1
+				player1.Update(deltaTime);
+
+				//update player2
+				player2.Update(deltaTime);
 
 				SDL_RenderClear(renderer);
 
@@ -1081,8 +1107,14 @@ int main(int argc, char* argv[]) {
 				//Draw the bkgd2 image
 				SDL_RenderCopy(renderer, bkgd2, NULL, &bkgd2Pos);
 
+				//draw player 1
+				player1.Draw(renderer);
+
+				//draw player 2
+				player2.Draw(renderer);
+
 				//Draw the title image
-				SDL_RenderCopy(renderer, Player2N, NULL, &Player2NPos);
+				//SDL_RenderCopy(renderer, Player2N, NULL, &Player2NPos);
 
 				//SDL Render present
 				SDL_RenderPresent(renderer);

@@ -56,7 +56,7 @@ Player::Player(SDL_Renderer *renderer, int pNum, string filePath, float x, float
 void Player::OnControllerButton(const SDL_ControllerButtonEvent event)
 {
 	//if the player's number is 0 and the joystick button is from joystick 0
-	if(event.which == 0 && playerNum ==0)
+	if(event.which == 0 && playerNum == 0)
 	{
 		//if A button
 		if(event.button == 0)
@@ -71,9 +71,9 @@ void Player::OnControllerButton(const SDL_ControllerButtonEvent event)
 	if(event.which == 1 && playerNum == 1)
 	{
 		//if A button
-		if(event.button ==0)
+		if(event.button == 0)
 		{
-			cout << "Player 1 - Button A" << endl;
+			cout << "Player 2 - Button A" << endl;
 
 		}
 
