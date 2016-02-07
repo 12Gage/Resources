@@ -96,8 +96,8 @@ void Player::CreateBullet(){
 			bulletList[i].posRect.y = posRect.y;
 
 			//set the x and y position of the bullet's float positions
-			bulletList[i].pos_X = pos_Y;
-			bulletList[i].pos_Y = pos_X;
+			bulletList[i].pos_X = pos_X;
+			bulletList[i].pos_Y = pos_Y;
 
 			//once bullet is found, break out of loop
 			break;

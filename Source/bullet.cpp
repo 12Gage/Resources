@@ -4,7 +4,7 @@
 Bullet::Bullet(SDL_Renderer * renderer, string filePath, float x, float y)
 {
 	//set the bullet initial state
-	active  = false;
+	active = false;
 
 	//set bullet speed
 	speed = 800.0;
@@ -27,7 +27,7 @@ Bullet::Bullet(SDL_Renderer * renderer, string filePath, float x, float y)
 
 	//set the x and y positions of the bullet rectangle
 	//finishing aligning to the player center using the texture width
-	posRect.x = x - (posRect.w/2);
+	posRect.x = x - (posRect.w / 2);
 	posRect.y = y;
 
 	//set the float positions values of the texture for precision loss
@@ -55,7 +55,7 @@ void Bullet::Update(float deltaTime) //float delta
 
 		//check to see of the bullet is off the top of the screen
 		//and deactivate and move off screen
-		if(posRect.y < (0 - posRect.h)){
+		if (posRect.y < (0 - posRect.h)) {
 			posRect.x = -1000;
 			pos_X = posRect.x;
 			active = false;
@@ -77,7 +77,3 @@ Bullet::~Bullet()
 	//SDL_DestroyTexture(texture);
 
 }
-
-
-
-
