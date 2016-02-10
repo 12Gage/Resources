@@ -100,13 +100,19 @@ public:
 	void OnControllerButton(const SDL_ControllerButtonEvent event);
 
 	//update the player using the passed in deltaTime
-	void Update(float deltaTime);
+	void Update(float deltaTime, SDL_Renderer * renderer);
 
 	//draw the player main's passed inrendere
 	void Draw(SDL_Renderer * renderer);
 
 	//Okayer's destruction method
 	~Player();
+
+	//update score method
+	void UpdateScore(SDL_Renderer *renderer);
+
+	//update score method
+	void UpdateLives(SDL_Renderer *renderer);
 
 private:
 

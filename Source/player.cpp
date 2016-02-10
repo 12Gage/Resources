@@ -24,21 +24,30 @@ Player::Player(SDL_Renderer *renderer, int pNum, string filePath, string audioPa
 	TTF_Init();
 
 	//load the font
-	font = TTF_OpenFont((audioPath + "PHOES___.TIF").c_str(), 40);
+	font = TTF_OpenFont((audioPath + "Long_Shot.ttf").c_str(), 40);
 
 	//see if this is player 1, or player 2, and create the corect X and Y locations
 	if(playerNum == 0){
 		//create the score texture X and Y position
 		scorePos.x = scorePos.y = 10;
 		livesPos.x = 10;
-		livesPos.y = 40;
+		livesPos.y = 60;
 	}else{
 		//create the score texture X and Y position
 		scorePos.x = 650;
 		scorePos.y = 10;
 		livesPos.x = 650;
-		livesPos.y = 40;
+		livesPos.y = 60;
 	}
+
+	//update score method
+	UpdateScore(renderer);
+
+	//update score method
+	UpdateLives(renderer);
+
+	//update score method
+	UpdateScore(renderer);
 
 	// see if this is player 1, or player 2 , and create the correct file path
 	if(playerNum == 0){
@@ -101,7 +110,133 @@ Player::Player(SDL_Renderer *renderer, int pNum, string filePath, string audioPa
 
 	}
 
+}
 
+//update score
+void Player::UpdateLives(SDL_Renderer *renderer){
+
+	//fix for to_astring problems on linux
+	string Result;	//string which will contain the result
+	ostringstream convert;	//stream used for the conversion
+	convert << playerLives;	//insert the textual of 'Number' in the characters in the stream
+	Result = convert.str(); // set 'Result' to the contents of the stream
+
+	//create the text for the font texture
+	tempLives = "Player Lives: " + Result;
+
+	//check to see what player this is and color the font as neded
+	if(playerNum == 0){
+		//place the player 1 score info into a surface
+		livesSurface = TTF_RenderText_Solid(font, tempLives.c_str(), colorP1);
+	}else{
+		//;place the player 1 score info into a surface
+		livesSurface = TTF_RenderText_Solid(font, tempLives.c_str(), colorP2);
+	}
+
+	//create the player score texture
+	livesTexture = SDL_CreateTextureFromSurface(renderer, livesSurface);
+
+	//get the Width and Height of the texture
+	SDL_QueryTexture(livesTexture, NULL, NULL, &livesPos.w, &livesPos.h);
+
+	//free surface
+	SDL_FreeSurface(livesSurface);
+
+	//set old score
+	oldLives = playerLives;
+
+}
+
+//update score
+void Player::UpdateScore(SDL_Renderer *renderer){
+
+	//fix for to_astring problems on linux
+	string Result;	//string which will contain the result
+	ostringstream convert;	//stream used for the conversion
+	convert << playerScore;	//insert the textual of 'Number' in the characters in the stream
+	Result = convert.str(); // set 'Result' to the contents of the stream
+
+	//create the text for the font texture
+	tempScore = "Player Score: " + Result;
+
+	//check to see what player this is and color the font as neded
+	if(playerNum == 0){
+		//place the player 1 score info into a surface
+		scoreSurface = TTF_RenderText_Solid(font, tempScore.c_str(), colorP1);
+	}else{
+		//;place the player 1 score info into a surface
+		scoreSurface = TTF_RenderText_Solid(font, tempScore.c_str(), colorP2);
+	}
+
+	//create the player score texture
+	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+
+	//get the Width and Height of the texture
+	SDL_QueryTexture(scoreTexture, NULL, NULL, &scorePos.w, &scorePos.h);
+
+	//free surface
+	SDL_FreeSurface(scoreSurface);
+
+	//set old score
+	oldScore = playerScore;
+
+}
+
+//Player update method
+void Player::Update(float deltaTime, SDL_Renderer * renderer)
+{
+	//adjust position floats based on speed, direction of joystick axis and deltaTime
+	pos_X += (speed * xDir) * deltaTime;
+	pos_Y += (speed * yDir) * deltaTime;
+
+	//update player position with code to account for precision loss
+	posRect.x = (int)(pos_X + 0.5f);
+	posRect.y = (int)(pos_Y + 0.5f);
+
+	if (posRect.x < 0){
+		posRect.x = 0;
+		pos_X = posRect.x;
+	}
+
+	if (posRect.x > 1024 - posRect.w){
+		posRect.x = 1024 - posRect.w;
+		pos_X = posRect.x;
+	}
+
+	if (posRect.y < 0){
+		posRect.y = 0;
+		pos_Y = posRect.y;
+	}
+
+	if (posRect.y > 768 - posRect.h){
+		posRect.y = 768 - posRect.h;
+		pos_Y = posRect.y;
+	}
+
+	//update the player's bullets
+	for(int i = 0; i < bulletList.size(); i++)
+	{
+		//check to see of the bullet is active
+		if(bulletList[i].active){
+
+			//update bullet
+			bulletList[i].Update(deltaTime);
+		}
+	}
+
+	//should score be updated?
+	if(playerScore != oldScore){
+
+		UpdateScore(renderer);
+
+	}
+
+	//should score be updated?
+	if(playerLives != oldLives){
+
+		UpdateLives(renderer);
+
+	}
 }
 
 //create a bullet
@@ -146,7 +281,12 @@ void Player::OnControllerButton(const SDL_ControllerButtonEvent event)
 		//if A button
 		if(event.button == 0)
 		{
-			cout << "Player 1 - Button A" << endl;
+			//text - change player score
+			playerScore += 10;
+
+			//text - change player score
+			playerLives -= 1;
+
 
 			//create a bullet
 			CreateBullet();
@@ -161,7 +301,11 @@ void Player::OnControllerButton(const SDL_ControllerButtonEvent event)
 		//if A button
 		if(event.button == 0)
 		{
-			cout << "Player 2 - Button A" << endl;
+			//text - change player score
+			playerScore += 10;
+
+			//text - change player score
+			playerLives -= 1;
 
 			//create a bullet
 			CreateBullet();
@@ -260,49 +404,6 @@ void Player::OnControllerAxis(const SDL_ControllerAxisEvent event)
 	}
 }
 
-//Player update method
-void Player::Update(float deltaTime)
-{
-	//adjust position floats based on speed, direction of joystick axis and deltaTime
-	pos_X += (speed * xDir) * deltaTime;
-	pos_Y += (speed * yDir) * deltaTime;
-
-	//update player position with code to account for precision loss
-	posRect.x = (int)(pos_X + 0.5f);
-	posRect.y = (int)(pos_Y + 0.5f);
-
-	if (posRect.x < 0){
-		posRect.x = 0;
-		pos_X = posRect.x;
-	}
-
-	if (posRect.x > 1024 - posRect.w){
-		posRect.x = 1024 - posRect.w;
-		pos_X = posRect.x;
-	}
-
-	if (posRect.y < 0){
-		posRect.y = 0;
-		pos_Y = posRect.y;
-	}
-
-	if (posRect.y > 768 - posRect.h){
-		posRect.y = 768 - posRect.h;
-		pos_Y = posRect.y;
-	}
-
-	//update the player's bullets
-	for(int i = 0; i < bulletList.size(); i++)
-	{
-		//check to see of the bullet is active
-		if(bulletList[i].active){
-
-			//update bullet
-			bulletList[i].Update(deltaTime);
-		}
-	}
-}
-
 //player draw method
 void Player::Draw(SDL_Renderer *renderer)
 {
@@ -319,6 +420,12 @@ void Player::Draw(SDL_Renderer *renderer)
 			bulletList[i].Draw(renderer);
 		}
 	}
+
+	//draw the player score
+	SDL_RenderCopy(renderer, scoreTexture, NULL, &scorePos);
+
+	//draw the player score
+	SDL_RenderCopy(renderer, livesTexture, NULL, &livesPos);
 }
 
 //player desteuction method
