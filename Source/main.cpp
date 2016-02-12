@@ -163,9 +163,12 @@ bool players1Over = false, players2Over = false, instructionsOver = false,
 #include <vector>
 #include <stdlib.h> /*srand.rand*/
 #include <time.h>   /*time*/
+#include "explode.h"
 
 //variable to hold the list of enemies: for 1 player game - 6 total, for 2 player game - 12 total
 vector<Enemy> enemyList;
+
+vector<Explode> explodeList;
 
 int main(int argc, char* argv[]) {
 
@@ -778,6 +781,16 @@ int main(int argc, char* argv[]) {
     Player player1 = Player(renderer, 0, s_cwd_images.c_str(), audio_dir.c_str(), 250.0, 500.0);
     Player player2 = Player(renderer, 1, s_cwd_images.c_str(), audio_dir.c_str(), 750.0, 500.0);
 
+	//create a pool of explosions - 20
+	for (int i = 0; i < 20; i++)
+	{
+		//create the enemy
+		Explode tmpExplode(renderer, s_cwd_images, -1000, -1000);
+
+		//add to enemylist
+		explodeList.push_back(tmpExplode);
+	}
+
 	//bool value to control the over sound effect and the buttons
 	bool alreadyOver = false;
 
@@ -1149,6 +1162,8 @@ int main(int argc, char* argv[]) {
 									//play explosion sound
 									Mix_PlayChannel(-1, explosionSound, 0);
 
+									MakeExplosion(enemyList[j].posRect.x, enemyList[j].posRect.y);
+
 									//reset the enemy
 									enemyList[j].Reset();
 
@@ -1170,6 +1185,8 @@ int main(int argc, char* argv[]) {
 							//play explosion sound
 							Mix_PlayChannel(-1, eplosionSound, 0);
 
+							MakeExplosion(player1.posRect.x - 32, player1.posRect.y - 32);
+
 							//reset the enemy
 							enemyList[i].Reset();
 
@@ -1187,6 +1204,16 @@ int main(int argc, char* argv[]) {
 				}
 				//ends
 
+				//create a pool of explosions - 20
+				for (int i = 0; i < explodeList.size(); i++)
+				{
+					//check to see if active
+					if (explodeList[i].active == true) {
+						//draw explode
+						explodeList[i].Update(deltaTime);
+					}
+				}
+
 				SDL_RenderClear(renderer);
 
 				//Draw the bkgd image
@@ -1200,6 +1227,16 @@ int main(int argc, char* argv[]) {
 				{
 					//update enemy
 					enemyList[i].Draw(renderer);
+				}
+
+				//create a pool of explosions - 20
+				for (int i = 0; i < explodeList.size(); i++)
+				{
+					//check to see if active
+					if (explodeList[i].active == true) {
+						//draw explode
+						explodeList[i].Draw(renderer);
+					}
 				}
 
 				//draw player
