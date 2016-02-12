@@ -7,7 +7,7 @@ Explode::Explode(SDL_Renderer *rrenderer, string filePath, float x, float y)
 	active = false;
 
 	//get the directery to the explosion graphic
-	string explodePath = filePath = "explosion3.png";
+	string explodePath = filePath + "boom3.png";
 
 	//init from counter
 	frameCounter = 0.0f;
@@ -44,7 +44,7 @@ Explode::Explode(SDL_Renderer *rrenderer, string filePath, float x, float y)
 
 	//original draw rectangle
 	//used to draw one frame of the animation strip
-	drawRect.x = 218;
+	drawRect.x = 128;
 	drawRect.y = 0;
 	drawRect.w = FrameWidth;
 	drawRect.h = FrameHeight;
