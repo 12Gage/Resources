@@ -203,7 +203,7 @@ int main(int argc, char* argv[]) {
 	string s_cwd(getcwd(NULL, 0));
 
 	string s_cwd_images = s_cwd + "\\Resources\\Images";
-	string s_cwd_images = s_cwd + "\\Resources\\Audio";
+	string audio_dir = s_cwd + "\\Resources\\Audio";
 
 #endif
 
@@ -216,7 +216,7 @@ int main(int argc, char* argv[]) {
 
 	//create a string linking to the mac's images folder
 	string s_cwd_images = s_cwd + "/Resources/Images/";
-	string s_cwd_images = s_cwd + "/Resources/Audio/";
+	string audio_dir = s_cwd + "/Resources/Audio/";
 
 #endif
 
