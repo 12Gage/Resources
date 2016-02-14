@@ -1543,7 +1543,7 @@ int main(int argc, char* argv[]) {
 					//check to see if active
 					if (explodeList[i].active == true) {
 						//draw explode
-						explodeList[i].Update(deltaTime);
+						explodeList[i].Draw(renderer);
 					}
 				}
 
